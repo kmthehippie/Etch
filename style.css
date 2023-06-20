@@ -17,6 +17,7 @@ body{
     justify-content: center;
     align-items: center;
     background-image: url(/images/bg.jpg);
+    background-color: rgb(100, 166, 204);
     text-align: center;
 }
 .main-container{
