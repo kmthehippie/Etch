@@ -117,6 +117,7 @@ Despawner required to remove spawned divs
         6 = blue, 
         7 = purple
         8 = brown, 
+    -> change to random rgb 0-255 r,g,b
 
 4. Selecting colors for the background color
     selected-color: 

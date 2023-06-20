@@ -3,17 +3,10 @@ const container = document.querySelector(".container-test");
 const rainbow = document.querySelector(".rainbow-mode");
 const eraser = document.querySelector(".eraser");
 
-// const button = document.querySelector("button");
-const large = document.querySelector("#large");
-const med = document.querySelector("#med");
-const small = document.querySelector("#small");
-const clear = document.querySelector(".clear");
+//selecting color
 const color = document.querySelectorAll(".color");
-
-//finding color selected
-color.forEach((item)=>{
-    console.log(item.id);
-})
+const button = document.querySelectorAll("button");
+const clear = document.querySelector(".clear");
 
 //div spawner
 let divCount = 16;
@@ -29,8 +22,11 @@ let spawnDiv = function (dC){
     }}
     
 }
-
 spawnDiv(16);
+
+
+//selecting pixels
+let pixels = document.querySelectorAll(".pixels");
 
 //Despawn divs
 let despawn = function(){
@@ -38,31 +34,125 @@ while(container.hasChildNodes()){
     container.removeChild(container.lastChild);
 }};
 
+//create a variable to contain current color selected + rgb for random
+let colorSelected;
+let randomSelected = false;
+
+//Random color 0-255 (random up to 256 and including 255)
+let randomColor = function(){
+    return Math.floor(Math.random()*256)
+}
+
+//return rgb random in string
+let randomC = function(){
+    return `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
+}
+
+//listen for rainbow clicks
+rainbow.addEventListener("click", ()=>{
+    randomSelected = true;
+    pixels.forEach((pixel)=>{
+        if (randomSelected === true){
+            pixel.addEventListener("mouseover", ()=>{
+                pixel.style.backgroundColor = randomC();
+            })
+        }else if (randomSelected === false){
+            pixel.addEventListener("mouseover", ()=>{
+                pixel.style.backgroundColor = colorSelected;
+            })
+        }
+    })
+    
+});
+
+
+// finding color selected when clicked
+color.forEach((item)=>{
+    item.addEventListener("click", (item)=>{
+        randomSelected = false;
+        colorSelected = item.target.id;
+        pixels.forEach((pixel)=>{
+    if (randomSelected === true){
+        pixel.addEventListener("mouseover", ()=>{
+            pixel.style.backgroundColor = randomC();
+        })
+    }else if (randomSelected === false){
+        pixel.addEventListener("mouseover", ()=>{
+            pixel.style.backgroundColor = colorSelected;
+        })
+    }
+})
+
+    })
+});
+
+//eraser clicks
+eraser.addEventListener("click", ()=>{
+    randomSelected = false;
+    colorSelected = "white";
+    pixels.forEach((pixel)=>{
+        if (randomSelected === true){
+            pixel.addEventListener("mouseover", ()=>{
+                pixel.style.backgroundColor = randomC();
+            })
+        }else if (randomSelected === false){
+            pixel.addEventListener("mouseover", ()=>{
+                pixel.style.backgroundColor = colorSelected;
+            })
+        }
+    })
+});
+
+//clear clicks
+clear.addEventListener("click",()=>{   
+    pixels.forEach((pixel)=>{
+        randomSelected = false;
+        pixel.style.backgroundColor = "white";
+        colorSelected = "white";
+    })
+})
+
+
 //Listen for pen size
-large.addEventListener("click",()=>{
-    despawn();
-    divCount = 16;   
-    spawnDiv(divCount);
-});
-med.addEventListener("click",()=>{ 
-    divCount = 32;
-    despawn();
-    spawnDiv(divCount);
-});
-small.addEventListener("click",()=>{
-    divCount = 64;
-    despawn();
-    spawnDiv(divCount)
-});
+button.forEach((button)=>{
+    button.addEventListener("click", (e)=>{
+        despawn();
+        if (e.target.id === "large"){
+            divCount = 16;
+        } else if (e.target.id === "med"){
+            divCount = 32;
+        } else if (e.target.id === "small"){       
+            divCount = 64;        
+        }
+        spawnDiv(divCount);
+
+        pixels = document.querySelectorAll(".pixels");
+        pixels.forEach((pixel)=>{
+            if (randomSelected === true){
+                pixel.addEventListener("mouseover", ()=>{
+                    pixel.style.backgroundColor = randomC();
+                })
+            }else if (randomSelected === false){
+                pixel.addEventListener("mouseover", ()=>{
+                    pixel.style.backgroundColor = colorSelected;
+                })
+            }
+
+        })             
+    })
+
+})
 
 
-//Random color (not done yet)
-// let colorArr = ["black", "yellow","red", "orange","green","blue","purple","brown"];
-// let randomColor = function(arr){
-//     for (index in arr)
-//     console.log(arr[rNum])
-// }
+pixels.forEach((pixel)=>{
+    if (randomSelected === true){
+        pixel.addEventListener("mouseover", ()=>{
+            pixel.style.backgroundColor = randomC();
+        })
+    }else if (randomSelected === false){
+        pixel.addEventListener("mouseover", ()=>{
+            pixel.style.backgroundColor = colorSelected;
+        })
+    }
+})
 
-// rainbow.addEventListener("click", ()=>{
-//     randomColor(colorArr);
-// })

@@ -36,15 +36,15 @@ h3{
     font-family: 'Roboto Mono', monospace;
 }
 .container{
-    border: 3em ridge red;
+    border: 0.5em dotted rgb(255, 0, 191);
     margin-bottom: 2em;
 }
 .container-test{
     display: flex;
     flex-direction: column;
-    width: 60vw;
-    height: 60vw;
-
+    width: 35vw;
+    height: 35vw;
+    cursor: pointer;
 }
 .vertical{
     flex: auto;
