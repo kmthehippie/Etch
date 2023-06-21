@@ -16,12 +16,12 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url(/images/bg.jpg);
-    background-color: rgb(100, 166, 204);
+    background-image: url(./images/bg.jpg);
+    background-color: rgb(16, 93, 138);
     text-align: center;
 }
 .main-container{
-    max-width: 980px;
+    max-width: 80vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -58,12 +58,10 @@ h3{
 }
 
 .pen {
-    width: 45em;
-    display: flex;
-    align-items: center;
-    padding: 1em;
     font-size: 0.8em;
-    max-height: 10em;
+    display: flex;   
+    justify-content: space-around;
+    padding: 1em;
     border: 1px solid rgba(92, 92, 92, 0.5);
     box-shadow: 10px 5px 5px rgba(17, 17, 17, 0.9);
     margin-bottom: 1.5em;

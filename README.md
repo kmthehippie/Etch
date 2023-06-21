@@ -142,3 +142,7 @@ Despawner required to remove spawned divs
 6. Clear Function
     all div reset to white background color
         
+21 June
+
+1. Fix background to fit any phone. It currently stretches over.
+2. Fix the background image. It is not loading.
